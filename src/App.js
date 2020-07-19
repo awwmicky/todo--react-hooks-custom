@@ -5,25 +5,101 @@ import './assets/App.css'
 export default () => {
 
   const [ todoList,setTodoList ] = useState([]);
+  // const [ tempList,setTempList ] = useState([]);
   const [ value,setValue ] = useState("");
   const [ select,setSelect ] = useState("create-task");
 
+/* 
+[×] create-task
+[] read-all
+[] read-tasks
 
+[] read-all-done
+[] read-all-undone
 
-  const handleSubmit = useCallback(
-    (e) => {
-      e.preventDefault()
+[×] update-all-done
+[×] update-all-undone
+[×] delete-tasks-done
+[×] delete-all
+*/
+
+  const createTask = useCallback(
+    () => {
+      // console.log('createTask')
       if (!value.trim()) return;
+
       setTodoList([
         ...todoList,
         {
           id: Date.now(),
-          task: value,
+          task: value.trim(),
           completed: false
         }
       ])
       setValue("")
     }, [ todoList,value ]
+  );
+  const readAll = useCallback(() => {
+    console.log('readAll');
+  }, []);
+  const readTasks = useCallback(() => {
+    console.log('readTasks');
+  }, []);
+  const updateAllDone = useCallback(
+    () => {
+      // console.log('updateAllDone')
+      const data = todoList.map(obj => ({ ...obj,completed:true }));
+      setTodoList(data)
+    }, [ todoList ]
+  );
+  const updateAllUndone = useCallback(
+    () => {
+      // console.log('updateAllUndone')
+      const data = todoList.map(obj => ({ ...obj,completed:false }));
+      setTodoList(data)
+    }, [ todoList ]
+  );
+  const deleteTasksDone = useCallback(
+    () => {
+      // console.log('deleteTasksDone');
+      const data = todoList.filter(obj => obj.completed === false);
+      setTodoList(data)
+    }, [ todoList ]
+  );
+  const deleteAll = useCallback(
+    () => {
+      console.log('deleteAll')
+      setTodoList( [] )
+    }, []
+  );
+
+  /*  */
+
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault()
+      
+      switch (select) {
+        case 'create-task': createTask(); break;
+        case 'read-all': readAll(); break;
+        case 'read-tasks': readTasks(); break;
+        case 'update-all-done': updateAllDone(); break;
+        case 'update-all-undone': updateAllUndone(); break;
+        case 'delete-tasks-done': deleteTasksDone(); break;
+        case 'delete-all': deleteAll(); break;
+        default: console.log('Unknown Error'); break;
+      }
+    
+    }, [ 
+      select, 
+      createTask,
+      readAll,
+      readTasks,
+      updateAllDone,
+      updateAllUndone,
+      deleteTasksDone,
+      deleteAll
+    ]
   );
 
   const handleValue = useCallback(
@@ -62,41 +138,14 @@ export default () => {
 
   const handleEdit = useCallback(
     (i) => (e) => {
-
-      console.log(i)
-      // setTodoList(data)
-    // }, [ todoList ]
-    }, [ ]
+      const card = e.target.parentElement.parentElement;
+      const text = card.querySelector('.task-title').textContent;
+      let data = [ ...todoList ];
+      data[i].task = text;
+      setTodoList(data)
+    }, [ todoList ]
   );
 
-  /*  */
-
-/* 
-[x] create-task
-[] read-all
-[] read-tasks
-[] update-task
-[x] update-all-done
-[x] update-all-undone
-[] delete-tasks
-[x] delete-all
-*/
-
-  // const markAllDone = () => {
-  //   const data = todoList.map(obj => ({ ...obj,completed:true }));
-  //   setTodoList(data)
-  // };
-
-  // const markAllUndone = () => {
-  //   const data = todoList.map(obj => ({ ...obj,completed:false }));
-  //   setTodoList(data)
-  // };
-
-  // const deleteAll = () => {
-  //   setTodoList( [] )
-  // };
-
-  // const test = (e) => console.log('object—');
 
 
   return (
@@ -137,10 +186,9 @@ export default () => {
               <option value="create-task">Add New Task</option>
               <option value="read-all">View All Tasks</option>
               <option value="read-tasks">Search For Tasks</option>
-              <option value="update-task">Update A Task</option>
               <option value="update-all-done">Mark All Done</option>
               <option value="update-all-undone">Mark All Undone</option>
-              <option value="delete-tasks">Delete Done Tasks</option>
+              <option value="delete-tasks-done">Delete Done Tasks</option>
               <option value="delete-all">Clear Todo List</option>
             </select>
             <input 
