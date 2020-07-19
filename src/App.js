@@ -82,21 +82,21 @@ export default () => {
 [x] delete-all
 */
 
-  const markAllDone = () => {
-    const data = todoList.map(obj => ({ ...obj,completed:true }));
-    setTodoList(data)
-  };
+  // const markAllDone = () => {
+  //   const data = todoList.map(obj => ({ ...obj,completed:true }));
+  //   setTodoList(data)
+  // };
 
-  const markAllUndone = () => {
-    const data = todoList.map(obj => ({ ...obj,completed:false }));
-    setTodoList(data)
-  };
+  // const markAllUndone = () => {
+  //   const data = todoList.map(obj => ({ ...obj,completed:false }));
+  //   setTodoList(data)
+  // };
 
-  const deleteAll = () => {
-    setTodoList( [] )
-  };
+  // const deleteAll = () => {
+  //   setTodoList( [] )
+  // };
 
-  const test = (e) => console.log('object—');
+  // const test = (e) => console.log('object—');
 
 
   return (
