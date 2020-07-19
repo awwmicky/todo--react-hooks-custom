@@ -53,12 +53,10 @@ export default () => {
 
   const handleContentOnFocus = (e) => {
     // console.log('blur', e.target.closest('.task-title'))
-    
     e.target.closest('.task-title').setAttribute('contentEditable',true)
   };
   const handleContentOnBlur = (e) => {
     // console.log('blur', e.target.closest('.task-title'))
-
     e.target.closest('.task-title').removeAttribute('contentEditable')
   };
 
