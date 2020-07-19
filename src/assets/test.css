@@ -1,0 +1,12 @@
+html { border: 2px solid black; }
+body { border: 2px solid silver; }
+#root { border: 2px solid gray; }
+
+/* header { border: 2px solid gray; } */
+/* main { border: 2px solid gray; } */
+/* footer { border: 2px solid gray; } */
+
+/* header > .initial-layout { border: 2px solid black; } */
+/* main .initial-layout { border: 2px solid lightgray; } */
+/* section > .initial-layout { border: 2px solid lightgray; } */
+/* footer > .initial-layout { border: 2px solid black; } */
