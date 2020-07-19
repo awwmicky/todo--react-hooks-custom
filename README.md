@@ -1,6 +1,7 @@
-# TO-DO APP ( [Live Preview](https://awwmicky.github.io/todo--react-hooks/) )
+# TO-DO APP ( [Live Preview](https://the-todo-react-hooks.netlify.app/) )
 
 ## React - Hooks
+`useState` - `useCallback` - `useContext`
 <!-- react-hooks -->
 
 <!--  

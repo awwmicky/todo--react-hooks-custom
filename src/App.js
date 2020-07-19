@@ -11,9 +11,9 @@ export default () => {
 
 /* 
 [×] create-task
+
 [] read-all
 [] read-tasks
-
 [] read-all-done
 [] read-all-undone
 
@@ -39,12 +39,18 @@ export default () => {
       setValue("")
     }, [ todoList,value ]
   );
-  const readAll = useCallback(() => {
-    console.log('readAll');
-  }, []);
-  const readTasks = useCallback(() => {
-    console.log('readTasks');
-  }, []);
+  // const readAll = useCallback(() => {
+  //   console.log('readAll');
+  // }, []);
+  // const readTasks = useCallback(() => {
+  //   console.log('readTasks');
+  // }, []);
+  // const readAllDone = useCallback(() => {
+  //   console.log('readAllDone');
+  // }, []);
+  // const readAllUndone = useCallback(() => {
+  //   console.log('readAllUndone');
+  // }, []);
   const updateAllDone = useCallback(
     () => {
       // console.log('updateAllDone')
@@ -81,8 +87,10 @@ export default () => {
       
       switch (select) {
         case 'create-task': createTask(); break;
-        case 'read-all': readAll(); break;
-        case 'read-tasks': readTasks(); break;
+        // case 'read-all': readAll(); break;
+        // case 'read-tasks': readTasks(); break;
+        // case 'read-all-done': readAllDone(); break;
+        // case 'read-all-undone': readAllUndone(); break;
         case 'update-all-done': updateAllDone(); break;
         case 'update-all-undone': updateAllUndone(); break;
         case 'delete-tasks-done': deleteTasksDone(); break;
@@ -93,8 +101,10 @@ export default () => {
     }, [ 
       select, 
       createTask,
-      readAll,
-      readTasks,
+      // readAll,
+      // readTasks,
+      // readAllDone,
+      // readAllUndone,
       updateAllDone,
       updateAllUndone,
       deleteTasksDone,
