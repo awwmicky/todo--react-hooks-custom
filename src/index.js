@@ -1,8 +1,8 @@
 import React, { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
 
-import './assets/reset.css'
-import './assets/test.css'
+import './assets/CSS/reset.css'
+import './assets/CSS/test.css'
 
 import App from './App'
 // import * as serviceWorker from './serviceWorker'

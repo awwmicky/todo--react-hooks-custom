@@ -1,8 +1,10 @@
 # TO-DO APP ( [Live Preview](https://the-todo-react-hooks.netlify.app/) )
 
 ## React - Hooks
-`useState` - `useCallback` - `useContext`
+`useState` - `useEffect`  - `useCallback` - `useMemo` - `useContext`
 <!-- react-hooks -->
+npm [localforage](https://www.npmjs.com/package/localforage):
+IndexDB, WebSQL, Local Storage
 
 <!--  
 index.html

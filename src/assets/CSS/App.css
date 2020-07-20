@@ -125,7 +125,8 @@
 }
 
 .select-val {
-    border: 1px solid black;
+    border: 1px solid silver;
+    border-radius: 0.3rem;
     padding: 0 0.75em;
     width: 75%;
 }
