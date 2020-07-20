@@ -6,28 +6,38 @@ import TodoList from './components/TodoList/'
 import { Context } from './assets/Context.js'
 
 
-export default () => {
 
-  const [ todoList,setTodoList ] = useState([]);
-  // const [ tempList,setTempList ] = useState([]);
-  const [ value,setValue ] = useState("");
-  const [ select,setSelect ] = useState("create-task");
+const STORAGE_NAME = 'todo_db';
 
+const useStorage = (db) => {
+  const [ state,setState ] = useState( [] );
+  
   useEffect(() => {
     (async () => {
       try {
-        const todoDB = await localforage.getItem('todo_db') || [];
-        if (todoDB) setTodoList(todoDB)
+        const todoDB = await localforage.getItem(db) || [];
+        if (todoDB) setState(todoDB)
       } catch (err) { console.error(err) }
     })()
-  }, [ ])
+  }, [ db ])
 
   useEffect(() => {
     (async () => {
-      try { await localforage.setItem('todo_db',todoList) } 
+      try { await localforage.setItem(db,state) } 
       catch (err) { console.error(err) }
     })()
-  }, [ todoList ])
+  }, [ db,state ])
+  
+  return [ state,setState ];
+};
+
+export default () => {
+
+  const [ todoList,setTodoList ] = useStorage(STORAGE_NAME);
+  // const [ todoList,setTodoList ] = useState([]);
+  // const [ tempList,setTempList ] = useState([]);
+  const [ value,setValue ] = useState("");
+  const [ select,setSelect ] = useState("create-task");
 
   const providerValue = useMemo(() => 
     ({ todoList,setTodoList, value,setValue, select,setSelect }), 
@@ -41,7 +51,7 @@ export default () => {
       <main className="container">
         <div className="header">
           <h1>To-Do</h1>
-          <p>React - Hooks</p>
+          <p>React - Hooks - Custom</p>
         </div>
         <Context.Provider value={ providerValue }>
           <TodoForm />
